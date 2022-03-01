@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 import br.com.springboot.primeiro_projeto.model.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
-	
-	@Query( value = "select u from Usuario u where upper(trim(u.nome)) like %?1%")
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+
+	@Query(value = "select u from Usuario u where upper(trim(u.nome)) like %?1%")
 	List<Usuario> buscarPorNome(String nome);
 
 }
