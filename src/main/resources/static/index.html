@@ -39,25 +39,22 @@
 	<button type="button" class="btn btn-danger" data-bs-toggle="modal"
 		data-bs-target="#modalPesquisarUser">Pesquisar</button>
 
-
 	<div class="modal fade" id="modalPesquisarUser" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Pesquisa de
-						Usuario</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Pesquisa de Usuario</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 					<form>
 						<div class="mb-3">
-							<label for="nameBusca" class="col-form-label">Informe o
-								Nome:</label> <input type="text" class="form-control" id="nameBusca">
+							<label for="nameBusca" class="col-form-label">Informe o Nome:</label> 
+								<input type="text" class="form-control" id="nameBusca">
 						</div>
-						<button type="button" class="btn btn-success"
-							onclick="pesquisarUser()">Buscar</button>
+						<button type="button" class="btn btn-success" onclick="pesquisarUser()">Buscar</button>
 					</form>
 					
 					<table class="table" id=tabelaResultados>
@@ -74,12 +71,12 @@
 					
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Fechar</button>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
 				</div>
 			</div>
 		</div>
 	</div>
+
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -97,32 +94,32 @@
 
 	<script type="text/javascript">
 		function pesquisarUser() {
-			var nome = $('#nameBusca').val();
+		var nome = $('#nameBusca').val();
 
-			if (nome |= null && nome.trim()){
-				
-				$.ajax({
-				method : "GET",
-			 	url : "buscarpornome",
-				data : "name=" + nome,
-				success : function(response) {
-				$('#tabelaResultados > tbody > tr').remove();
+		if (nome |= null && nome.trim(){
+			
+		$.ajax({
+			method : "GET",
+		 	url : "buscarpornome",
+			data : "name=" + nome,
+			success : function(response) {
+			$('#tabelaResultados > tbody > tr').remove();
 
-				for (var i = 0; i < response.length; i++) {
-					$('#tabelaResultados > tbody').append('<tr><td>'
-					+response[i].id+ '</td><td>'
-					+response[i].nome+ '</td></td><button type="button" onclick="colocarEmEdicao('
-					+response[i].id+ ')"class="btn btn-warning">Ver</button</td></tr>');
-			}
-		}
-
-		}).fail(function(xhr, status, errorThrown) {
-				alert("Erro ao Buscar:" + xhr.responseText);
-		});
-
+			for (var i = 0; i < response.length; i++) {
+				$('#tabelaResultados > tbody').append('<tr><td>'
+				+response[i].id+ '</td><td>'
+				+response[i].nome+ '</td></td><button type="button" onclick="colocarEmEdicao('
+				+response[i].id+ ')"class="btn btn-warning">Ver</button</td></tr>');
 		}
 	}
 
+	}).fail(function(xhr, status, errorThrown) {
+			alert("Erro ao Buscar:" + xhr.responseText);
+	});
+
+	}
+}	
+	
 		function salvarUsuario() {
 
 			var id = $("#id").val();
