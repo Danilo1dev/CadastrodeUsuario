@@ -1,37 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <!-- Bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+	
+<title>HTML5 – Estrutura básica</title>
 
+<style type="text/css">
+
+html{
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-top:  20px;
+}
+</style>
 </head>
+
 <body>
-	<h3>Spring Boot Rest Api - Crud completo</h3>
+<h3 style="text-align:center;">Spring Boot Rest Api - Crud completo</h3>
 
-	<form action="" id=formCadastroUser>
-		<div class="mb-3">
-			<label for="id" class="form-label">ID</label> <input type="text"
-				class="form-control" id="id" readonly="readonly">
-		</div>
+<form  action="" id="formCadastroUser">
+		
+			<div  class="col-xs-6 col-md-12">
+		  <label for="id" class="form-label">ID</label>
+		  <input type="text" class="form-control" id="id" name="id" disabled>
+			</div>
+			
+			<div  class="col-xs-6 col-md-12 mt-2">
+		  <label for="nome" class="form-label">Nome do usuário</label>
+		  <input type="text" class="form-control" id="nome" name="nome" placeholder="informe o nome" required>
+			</div>
+			
+			<div  class="col-xs-6 col-md-12 mt-2">
+		  <label for="idade" class="form-label">Idade:</label>
+		  <input type="number" class="form-control" id="idade" name="idade" >
+			</div>
 
-		<div class="mb-3">
-			<label for="nome" class="form-label">Nome do Usuario</label> <input
-				type="text" class="form-control" id="nome"
-				placeholder="informe o nome" required="required">
-		</div>
-
-		<div class="mb-3">
-			<label for="idade" class="form-label">Idade</label> <input
-				type="number" class="form-control" id="idade"
-				placeholder="informe a idade" required="required">
-		</div>
-	</form>
+</form>
 
 	<button type="button" class="btn btn-primary" onclick="salvarUsuario()">Salvar</button>
 	<button type="button" class="btn btn-secondary"
@@ -97,7 +109,7 @@
 		var nome = $('#nameBusca').val();
 
 		if (nome |= null && nome.trim(){
-			
+		
 		$.ajax({
 			method : "GET",
 		 	url : "buscarpornome",
