@@ -48,7 +48,7 @@ html{
 	<button type="button" class="btn btn-primary" onclick="salvarUsuario()">Salvar</button>
 	<button type="button" class="btn btn-secondary" onclick="document.getElementById('formCadastroUser').reset();">Novo</button>
 	<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalPesquisarUser">Pesquisar</button>
-<!--<button type="button" class="btn btn-warning" onclick="botaoDeletarDaTela();">Deletar</button> -->
+	<button type="button" class="btn btn-warning" onclick="botaoDeletarDaTela();">Deletar</button>
 
 	<div class="modal fade" id="modalPesquisarUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -73,7 +73,7 @@ html{
 								<th scope="col">ID</th>
 								<th scope="col">Nome</th>
 								<th scope="col">Editar</th>
-								<!-- <th scope="col">Delete</th> -->
+								<th scope="col">Delete</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -106,6 +106,40 @@ html{
 
 	<script type="text/javascript">
 	
+	function botaoDeletarDaTela(){
+		var id = $('#id').val();
+		
+		if(id != null && id.trim() != ''){
+		 deleteUser(id);
+		 document.getElementById('formCadastroUser').reset();
+		}
+		
+	}
+
+
+	function deleteUser(id){
+		
+		if(confirm('Deseja realmente deletar?')) {
+		
+		 $.ajax({
+				method : "DELETE",
+				url : "delete",
+				data : "iduser=" + id,
+				success : function(response) {
+					
+					$('#'+ id).remove();
+
+					alert(response);	  
+				}
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Erro ao deletar usuario por id: " + xhr.responseText);
+			});
+		 
+		}
+		
+	}
+	
+	
 	function pesquisarUser(){
 		  var nome = $('#nameBusca').val();
 		  
@@ -135,7 +169,7 @@ html{
 		  		  
 		  $.ajax({
 				method : "GET",
-				url : "buscauserid",
+				url : "buscaruserid",
 				data : "iduser=" + id ,
 				success : function(response) {
 
