@@ -109,12 +109,11 @@ html{
 	function pesquisarUser(){
 		  var nome = $('#nameBusca').val();
 		  
-		  if (nome != null && nome.trim() != ''){
-			  
+		  if (nome != null && nome.trim() != ''){	  
 			  
 			  $.ajax({
 					method : "GET",
-					url : "buscarPorNome",
+					url : "buscarpornome",
 					data : "name=" + nome ,
 					success : function(response) {
 						$('#tabelaresultados > tbody > tr').remove();
@@ -133,8 +132,7 @@ html{
 	  
 	    
 	  function colocarEmEdicao(id) {
-		  
-		  
+		  		  
 		  $.ajax({
 				method : "GET",
 				url : "buscauserid",
@@ -159,6 +157,20 @@ html{
 			var id = $("#id").val();
 			var nome = $("#nome").val();
 			var idade = $("#idade").val();
+			
+			
+			if (nome == null || nome != null && nome.trim() == ''){
+				$("#nome").focus();
+				alert('Informe o nome');
+				return;
+			}
+			
+			if (idade == null || idade != null && idade.trim() == ''){
+				$("#idade").focus();
+				alert('Informe a idade');
+				return;
+			}
+			
 
 			$.ajax({
 				method : "POST",
@@ -181,6 +193,8 @@ html{
 
 			});
 		}
+		
+	
 	</script>
 
 </body>
