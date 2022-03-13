@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,31 +28,24 @@ public class GreetingsController {
 
 	@RequestMapping(value = "/crud/{nome}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public String metodocrud2(@PathVariable String nome) {
-
+	public void metodocrud2(@PathVariable String nome) {
 		Usuario usuario = new Usuario();
-		usuario.setNome(nome);
-
-		usuarioRepository.save(usuario);
-		return "Crud feito: " + nome + "!";
+		usuario.setNome(nome);	
 	}
 
-	@GetMapping(value = "listatodos")
-	@ResponseBody 
+	@GetMapping(value = "listatodos") 
 	public ResponseEntity<List<Usuario>> listaUsuario() {
 		List<Usuario> usuarios = usuarioRepository.findAll();
 		return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
 	}
 
-	@PostMapping(value = "salvar")
-	@ResponseBody 
+	@PostMapping(value = "salvar") 
 	public ResponseEntity<Usuario> salvar(@RequestBody Usuario usuario) {
 		Usuario user = usuarioRepository.save(usuario);
 		return new ResponseEntity<Usuario>(user, HttpStatus.CREATED);
 	}
 
 	@PutMapping(value = "atualizar") 
-	@ResponseBody
 	public ResponseEntity<?> atualizar(@RequestBody Usuario usuario) {
 		
 		if (usuario.getId() == null) {
@@ -65,21 +57,18 @@ public class GreetingsController {
 	}
 
 	@DeleteMapping(value = "delete") 
-	@ResponseBody 
 	public ResponseEntity<String> delete(@RequestParam Long iduser) { 
 		usuarioRepository.deleteById(iduser);
 		return new ResponseEntity<String>("Deletado com Sucesso", HttpStatus.OK);
 	}
 
-	@GetMapping(value = "buscaruserid") 
-	@ResponseBody 
+	@GetMapping(value = "buscaruserid")  
 	public ResponseEntity<Usuario> buscaruserid(@RequestParam(name = "iduser") Long iduser) {
 		Usuario usuario = usuarioRepository.findById(iduser).get();
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "buscarpornome") 
-	@ResponseBody
 	public ResponseEntity<List<Usuario>> buscarPorNome(@RequestParam(name = "name") String name) { 
 		List<Usuario> usuario = usuarioRepository.buscarPorNome(name.trim().toUpperCase());
 		return new ResponseEntity<List<Usuario>>(usuario, HttpStatus.OK);
